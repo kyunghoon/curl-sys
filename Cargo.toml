@@ -10,4 +10,4 @@ links = "curl"
 anyhow = "1.0.65"
 
 [dependencies]
-openssl-sys = { git = "https://github.com/kyunghoon/openssl-sys.git", tag="0.0.2" }
+openssl-sys = { git = "https://github.com/kyunghoon/openssl-sys.git", tag="0.0.3" }
