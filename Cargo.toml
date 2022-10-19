@@ -1,6 +1,6 @@
 [package]
 name = "curl-sys"
-version = "0.1.0"
+version = "0.1.3"
 edition = "2021"
 links = "curl"
 
@@ -9,5 +9,5 @@ links = "curl"
 [build-dependencies]
 anyhow = "1.0.65"
 
-[dependencies]
-openssl-sys = { git = "https://github.com/kyunghoon/openssl-sys.git", tag="0.0.3" }
+[target.'cfg(all(target_os="android", target_arch="aarch64"))'.dependencies]
+openssl-sys = { git = "https://github.com/kyunghoon/openssl-sys.git", tag="0.0.6" }
