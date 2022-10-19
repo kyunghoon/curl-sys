@@ -35,7 +35,9 @@ fn go() -> Result<()> {
                         .arg("--disable-dict").arg("--disable-file").arg("--disable-ftp").arg("--disable-ftps")
                         .arg("--disable-gopher").arg("--disable-imap").arg("--disable-imaps").arg("--disable-pop3")
                         .arg("--disable-pop3s").arg("--disable-smb").arg("--disable-smbs").arg("--disable-smtp")
-                        .arg("--disable-smtps").arg("--disable-telnet").arg("--disable-tftp").arg("--disable-debug")
+                        .arg("--disable-smtps").arg("--disable-telnet").arg("--disable-tftp")
+                        //.arg(if var("PROFILE").unwrap() == "debug" { "--enable-debug" } else { "--disable-debug" })
+                        .arg("--disable-debug")
                         .arg("--enable-optimize")
                         .current_dir(format!("{}/curl", env!("CARGO_MANIFEST_DIR"))).output()?);
                 }
@@ -53,7 +55,9 @@ fn go() -> Result<()> {
                 .arg("--disable-dict").arg("--disable-file").arg("--disable-ftp").arg("--disable-ftps")
                 .arg("--disable-gopher").arg("--disable-imap").arg("--disable-imaps").arg("--disable-pop3")
                 .arg("--disable-pop3s").arg("--disable-smb").arg("--disable-smbs").arg("--disable-smtp")
-                .arg("--disable-smtps").arg("--disable-telnet").arg("--disable-tftp").arg("--disable-debug")
+                .arg("--disable-smtps").arg("--disable-telnet").arg("--disable-tftp")
+                //.arg(if var("PROFILE").unwrap() == "debug" { "--enable-debug" } else { "--disable-debug" })
+                .arg("--disable-debug")
                 .current_dir(format!("{}/curl", env!("CARGO_MANIFEST_DIR"))).output()?);
         }
     };
