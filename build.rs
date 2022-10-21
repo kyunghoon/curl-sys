@@ -20,7 +20,7 @@ fn go() -> Result<()> {
     match std::env::var("TARGET") {
         Ok(target) if target == "aarch64-linux-android" => {
             match std::env::var("HOST") {
-                Ok(host) if host == "x86_64-apple-darwin" => {
+                Ok(host) if host == "x86_64-apple-darwin" || host == "aarch64-apple-darwin" => {
                     let ndk_root = var("ANDROID_NDK_HOME").expect("ANDROID_NDK_HOME is undefined");
                     let toolchain = format!("{}/toolchains/{}-4.9/prebuilt/darwin-x86_64/bin", ndk_root, target);
                     let android_sysroot = format!("{}/platforms/android-24/arch-arm64", ndk_root);
