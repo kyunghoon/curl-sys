@@ -73,8 +73,16 @@ fn go() -> Result<()> {
             }
         },
         _ => {
-            let out = Command::new("./configure")
-                .arg(format!("--prefix={}", out_dir))
+            let host = std::env::var("HOST").unwrap();
+            let mut cmd = match host.as_str() {
+                h if h == "x86_64-apple-darwin" => Command::new("./configure"),
+                h if h == "aarch64-apple-darwin" => Command::new("arch"),
+                _ => panic!("unsupported host"),
+            };
+
+            let out = if host != "aarch64-apple-darwin" { &mut cmd } else {
+                cmd.arg("-x86_64").arg("./configure")
+            }.arg(format!("--prefix={}", out_dir))
                 .arg("--with-darwinssl").arg("--disable-ldap").arg("--disable-ldaps").arg("--disable-shared")
                 .arg("--disable-verbose").arg("--disable-manual").arg("--disable-crypto-auth")
                 .arg("--disable-unix-sockets").arg("--disable-idn").arg("--disable-dict").arg("--disable-ares")
